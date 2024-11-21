@@ -1,4 +1,10 @@
 # Changelog
+## 1.2.1
+* Fix Fatal error: Attempted to read an unowned reference but the object was already deallocated
+
+## 1.4.0
+
+* Migrates from `ui.hash*` to `Object.hash*`
 
 ## 1.3.0
 

@@ -41,8 +41,10 @@ class AppleMap extends StatefulWidget {
     this.onCameraIdle,
     this.onTap,
     this.onLongPress,
+    this.enableClustering = false,
     this.snapshotOptions,
     this.insetsLayoutMarginsFromSafeArea = true,
+    this.enableClustering = false,
   }) : super(key: key);
 
   final MapCreatedCallback? onMapCreated;
@@ -164,11 +166,21 @@ class AppleMap extends StatefulWidget {
   /// native controls.
   final EdgeInsets padding;
 
+  /// Enables or disables MapKit native clustering.
+  ///
+  /// Warning: Experimental. This feature has only been tested with custom icon annotations.
+  final bool enableClustering;
+
   final SnapshotOptions? snapshotOptions;
 
   /// A Boolean value indicating whether the view's layout margins are updated
   /// automatically to reflect the safe area.
   final bool insetsLayoutMarginsFromSafeArea;
+
+  /// Enables or disables MapKit native clustering.
+  ///
+  /// Warning: Experimental. This feature has only been tested with custom icon annotations.
+  final bool enableClustering;
 
   @override
   State createState() => _AppleMapState();
@@ -193,6 +205,7 @@ class _AppleMapState extends State<AppleMap> {
       'polylinesToAdd': _serializePolylineSet(widget.polylines),
       'polygonsToAdd': _serializePolygonSet(widget.polygons),
       'circlesToAdd': _serializeCircleSet(widget.circles),
+      'clusteringEnabled': widget.enableClustering,
     };
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       return UiKitView(
